@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D32A602-2896-46ED-AB9C-F294CEA98C18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entity</RootNamespace>
+    <AssemblyName>Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interception\NullDbConnectionInterceptor.cs" />
+    <Compile Include="MasterSlaves\ConfigFile\ApplyItemCollection.cs" />
+    <Compile Include="MasterSlaves\ConfigFile\ApplyItemElement.cs" />
+    <Compile Include="MasterSlaves\ConfigFile\ConnectionStringElement.cs" />
+    <Compile Include="MasterSlaves\ConfigFile\EFMasterSlaveSection.cs" />
+    <Compile Include="MasterSlaves\ConfigFile\MasterConnectionStringElement.cs" />
+    <Compile Include="MasterSlaves\ConfigFile\SlaveConnectionStringCollection.cs" />
+    <Compile Include="MasterSlaves\ConfigFile\SlaveConnectionStringElement.cs" />
+    <Compile Include="MasterSlaves\DbMasterServer.cs" />
+    <Compile Include="MasterSlaves\DbMasterSlaveCommandInterceptor.cs" />
+    <Compile Include="MasterSlaves\DbMasterSlaveConfig.cs" />
+    <Compile Include="MasterSlaves\DbMasterSlaveConfigContext.cs" />
+    <Compile Include="MasterSlaves\DbMasterSlaveConnectionInterceptor.cs" />
+    <Compile Include="MasterSlaves\DbServer.cs" />
+    <Compile Include="MasterSlaves\DbServerState.cs" />
+    <Compile Include="MasterSlaves\DbServerStateScanEventArgs.cs" />
+    <Compile Include="MasterSlaves\DbServerStateScanEventHandler.cs" />
+    <Compile Include="MasterSlaves\DbServerStateScanner.cs" />
+    <Compile Include="MasterSlaves\DbServerType.cs" />
+    <Compile Include="MasterSlaves\DbSlaveServer.cs" />
+    <Compile Include="MasterSlaves\DbSlaveServerCollection.cs" />
+    <Compile Include="MasterSlaves\EFMasterSlaveConfig.cs" />
+    <Compile Include="MasterSlaves\Interception\IMasterSlaveInterceptor.cs" />
+    <Compile Include="MasterSlaves\Interception\MasterSlaveDispatcher.cs" />
+    <Compile Include="MasterSlaves\Interception\MasterSlaveInterception.cs" />
+    <Compile Include="MasterSlaves\Interception\MasterSlaveInterceptor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="MasterSlaves\ef.masterslave.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterSlaves\license.txt" />
+    <Content Include="MasterSlaves\readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{59450a22-5312-49ca-b396-f517a0b7226c}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
